@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
 import classnames from 'classnames';
 
@@ -26,7 +28,14 @@ export const Checkbox: React.FC<CheckbooxProperty> = ({ id, action, label, class
 						}}
 					/>
 				</div>
-				<span>{label}</span>
+				<span
+					onClick={() => {
+						setCheckboxValue(!checkboxValue);
+						action();
+					}}
+				>
+					{label}
+				</span>
 			</label>
 		</>
 	);
