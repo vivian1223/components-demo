@@ -6,21 +6,28 @@ import { ReactComponent as CheckboxIcon } from '../../../images/icons/checkbox.s
 import styles from './index.module.css';
 
 interface CheckbooxProperty {
-	initValue: boolean;
+	id: string;
 	action: () => void;
+	label: string;
+	classname: string;
 }
 
-export const Checkbox: React.FC<CheckbooxProperty> = ({ initValue, action }) => {
-	const [checkboxValue, setCheckboxValue] = useState(initValue);
+export const Checkbox: React.FC<CheckbooxProperty> = ({ id, action, label, classname }) => {
+	const [checkboxValue, setCheckboxValue] = useState(false);
 	return (
-		<div className={classnames(styles.checkbox, { [styles.showIcon]: !checkboxValue })}>
-			<input type="checkbox" />
-			<CheckboxIcon
-				onClick={() => {
-					setCheckboxValue(!checkboxValue);
-					action();
-				}}
-			/>
-		</div>
+		<>
+			<label htmlFor={id} className={classnames(styles.label, classname)}>
+				<div className={classnames(styles.checkbox, { [styles.showIcon]: !checkboxValue })}>
+					<input type="checkbox" id={id} />
+					<CheckboxIcon
+						onClick={() => {
+							setCheckboxValue(!checkboxValue);
+							action();
+						}}
+					/>
+				</div>
+				<span>{label}</span>
+			</label>
+		</>
 	);
 };
