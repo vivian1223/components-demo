@@ -12,14 +12,26 @@ interface CheckbooxProperty {
 	action: () => void;
 	label: string;
 	classname: string;
+	disabled?: boolean;
 }
 
-export const Checkbox: React.FC<CheckbooxProperty> = ({ id, action, label, classname }) => {
+export const Checkbox: React.FC<CheckbooxProperty> = ({
+	id,
+	action,
+	label,
+	classname,
+	disabled = false,
+}) => {
 	const [checkboxValue, setCheckboxValue] = useState(false);
 	return (
 		<>
 			<label htmlFor={id} className={classnames(styles.label, classname)}>
-				<div className={classnames(styles.checkbox, { [styles.showIcon]: !checkboxValue })}>
+				<div
+					className={classnames(styles.checkbox, {
+						[styles.showIcon]: !checkboxValue,
+						[styles.disabled]: disabled,
+					})}
+				>
 					<input type="checkbox" id={id} />
 					<CheckboxIcon
 						onClick={() => {
@@ -29,6 +41,7 @@ export const Checkbox: React.FC<CheckbooxProperty> = ({ id, action, label, class
 					/>
 				</div>
 				<span
+					className={classnames({ [styles.disabled]: disabled })}
 					onClick={() => {
 						setCheckboxValue(!checkboxValue);
 						action();

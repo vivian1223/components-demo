@@ -29,6 +29,7 @@
 		}
 	},
 	"rules": {
+		"react/require-default-props": "off",
 		"arrow-parens": [
 			"error",
 			"as-needed"
