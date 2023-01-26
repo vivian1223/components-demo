@@ -23,6 +23,12 @@ export const Checkbox: React.FC<CheckbooxProperty> = ({
 	disabled = false,
 }) => {
 	const [checkboxValue, setCheckboxValue] = useState(false);
+	const onClickFunciton = () => {
+		if (!disabled) {
+			setCheckboxValue(!checkboxValue);
+			action();
+		}
+	};
 	return (
 		<>
 			<label htmlFor={id} className={classnames(styles.label, classname)}>
@@ -33,20 +39,9 @@ export const Checkbox: React.FC<CheckbooxProperty> = ({
 					})}
 				>
 					<input type="checkbox" id={id} />
-					<CheckboxIcon
-						onClick={() => {
-							setCheckboxValue(!checkboxValue);
-							action();
-						}}
-					/>
+					<CheckboxIcon onClick={onClickFunciton} />
 				</div>
-				<span
-					className={classnames({ [styles.disabled]: disabled })}
-					onClick={() => {
-						setCheckboxValue(!checkboxValue);
-						action();
-					}}
-				>
+				<span className={classnames({ [styles.disabled]: disabled })} onClick={onClickFunciton}>
 					{label}
 				</span>
 			</label>
