@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { Subtitle } from '../../atoms/Subtitle';
-import { Paragraph } from '../../atoms/Paragragh';
 
 import styles from './index.module.css';
 
@@ -15,7 +14,7 @@ export const ComponentCard: React.FC<ComponentCardProperty> = ({ title, intro, c
 	return (
 		<div className={styles.card}>
 			<Subtitle text={title} />
-			<Paragraph text={intro} />
+			<p>{intro}</p>
 			{content}
 		</div>
 	);
